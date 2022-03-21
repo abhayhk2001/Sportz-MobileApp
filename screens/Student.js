@@ -4,14 +4,14 @@ import { Card } from "react-native-shadow-cards";
 import axios from "axios";
 import Loading from "./Loading";
 
-const SportEvent = () => {
+const Student = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([{}]);
 
   const fetchData = () => {
     setIsLoading(true);
     axios
-      .get("https://8d7a-49-37-183-94.in.ngrok.io/api/admin/sporteventinfo")
+      .get("https://8d7a-49-37-183-94.in.ngrok.io/api/admin/studentinfo")
       .then((response) => {
         setData(response.data);
         setIsLoading(false);
@@ -27,10 +27,10 @@ const SportEvent = () => {
           <>
             {data.map((obj) => (
               <Card style={[styles.card, { padding: 50, margin: 10 }]}>
-                <Text>Held In:{obj?.event}</Text>
-                <Text>Sport: {obj?.sports}</Text>
-                <Text>Start Date: {obj?.start_time}</Text>
-                <Text>End Date: {obj?.end_time}</Text>
+                <Text>Name: {obj?.name}</Text>
+                <Text>Dept: {obj?.dept}</Text>
+                <Text>USN: {obj?.usn}</Text>
+                <Text>Sem: {obj?.semester}</Text>
               </Card>
             ))}
           </>
@@ -45,7 +45,7 @@ const SportEvent = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Events</Text>
+      <Text style={styles.heading}>Students</Text>
       <Cards />
     </View>
   );
@@ -66,4 +66,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-export default SportEvent;
+export default Student;
